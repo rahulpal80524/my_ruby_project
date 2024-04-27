@@ -1,0 +1,1607 @@
+  [1m[35m (87195.4ms)[0m  [1m[35mCREATE DATABASE "myproject_development" ENCODING = 'unicode'[0m
+  [1m[35m (45660.7ms)[0m  [1m[35mCREATE DATABASE "myproject_test" ENCODING = 'unicode'[0m
+  [1m[35m (1896.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1657.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3843959704205365815)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DeviseCreateUsers (20240421075005)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1475.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "remember_created_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (654.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (663.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20240421075005"]]
+  [1m[36mTRANSACTION (267.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2024-04-21 07:59:08.229909"], ["updated_at", "2024-04-21 07:59:08.229909"]]
+  [1m[36mTRANSACTION (303.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(3843959704205365815)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3843959704205365815)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateProducts (20240421080148)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1481.5ms)[0m  [1m[35mCREATE TABLE "products" ("id" bigserial primary key, "name" character varying, "description" text, "price" float, "user_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_dee2631783"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (794.8ms)[0m  [1m[35mCREATE INDEX "index_products_on_user_id" ON "products" ("user_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20240421080148"]]
+  [1m[36mTRANSACTION (359.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(3843959704205365815)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "marcos@hoeger.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "marcos@hoeger.test"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:15:21.270210"], ["updated_at", "2024-04-21 08:15:21.270210"]]
+  [1m[36mTRANSACTION (444.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "lee.will@dach-kuhn.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "lee.will@dach-kuhn.example"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:15:21.933999"], ["updated_at", "2024-04-21 08:15:21.933999"]]
+  [1m[36mTRANSACTION (256.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "manual_lind@erdman.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "manual_lind@erdman.test"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:15:22.416960"], ["updated_at", "2024-04-21 08:15:22.416960"]]
+  [1m[36mTRANSACTION (247.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "loan@hudson-miller.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "loan@hudson-miller.example"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:15:22.904213"], ["updated_at", "2024-04-21 08:15:22.904213"]]
+  [1m[36mTRANSACTION (391.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "cassandra@rodriguez.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "cassandra@rodriguez.test"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:15:23.527888"], ["updated_at", "2024-04-21 08:15:23.527888"]]
+  [1m[36mTRANSACTION (320.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "felicidad@weimann.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "felicidad@weimann.example"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:15:24.081645"], ["updated_at", "2024-04-21 08:15:24.081645"]]
+  [1m[36mTRANSACTION (241.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "herbert@kub.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "herbert@kub.test"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:15:24.554926"], ["updated_at", "2024-04-21 08:15:24.554926"]]
+  [1m[36mTRANSACTION (319.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "justin@wyman.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "justin@wyman.test"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:15:25.107613"], ["updated_at", "2024-04-21 08:15:25.107613"]]
+  [1m[36mTRANSACTION (419.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "celinda_schuppe@cole.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "celinda_schuppe@cole.test"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:15:25.762990"], ["updated_at", "2024-04-21 08:15:25.762990"]]
+  [1m[36mTRANSACTION (324.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ramiro@moen.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "ramiro@moen.example"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:15:26.316013"], ["updated_at", "2024-04-21 08:15:26.316013"]]
+  [1m[36mTRANSACTION (245.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mProduct Create (2.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Ergonomic Marble Clock"], ["description", "Et facere magni. Nemo laborum aut. Veniam ad molestias."], ["price", 77.82], ["user_id", 3], ["created_at", "2024-04-21 08:15:26.984369"], ["updated_at", "2024-04-21 08:15:26.984369"]]
+  [1m[36mTRANSACTION (281.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.7ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Fantastic Concrete Table"], ["description", "Ad dolorem ex. Molestiae possimus in. Ipsa quisquam blanditiis."], ["price", 75.79], ["user_id", 5], ["created_at", "2024-04-21 08:15:27.279336"], ["updated_at", "2024-04-21 08:15:27.279336"]]
+  [1m[36mTRANSACTION (340.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Lightweight Steel Coat"], ["description", "Doloremque est est. Rerum eveniet quis. Voluptate dolorem consequuntur."], ["price", 8.64], ["user_id", 10], ["created_at", "2024-04-21 08:15:27.631867"], ["updated_at", "2024-04-21 08:15:27.631867"]]
+  [1m[36mTRANSACTION (237.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Heavy Duty Concrete Coat"], ["description", "Culpa mollitia amet. Inventore omnis quam. A aut qui."], ["price", 27.37], ["user_id", 4], ["created_at", "2024-04-21 08:15:27.887508"], ["updated_at", "2024-04-21 08:15:27.887508"]]
+  [1m[36mTRANSACTION (259.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Mediocre Linen Plate"], ["description", "Nihil quas voluptas. Laboriosam nam asperiores. Voluptatem dolor tempora."], ["price", 22.35], ["user_id", 6], ["created_at", "2024-04-21 08:15:28.169871"], ["updated_at", "2024-04-21 08:15:28.169871"]]
+  [1m[36mTRANSACTION (136.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Enormous Marble Watch"], ["description", "Quaerat mollitia eligendi. Consectetur vero nulla. Magnam quae illo."], ["price", 54.08], ["user_id", 5], ["created_at", "2024-04-21 08:15:28.327134"], ["updated_at", "2024-04-21 08:15:28.327134"]]
+  [1m[36mTRANSACTION (384.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Incredible Marble Watch"], ["description", "Harum ut adipisci. Rerum commodi repudiandae. Sed rerum quam."], ["price", 69.83], ["user_id", 10], ["created_at", "2024-04-21 08:15:28.727428"], ["updated_at", "2024-04-21 08:15:28.727428"]]
+  [1m[36mTRANSACTION (338.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Gorgeous Leather Keyboard"], ["description", "Nesciunt distinctio qui. Accusantium molestiae vel. Et molestiae qui."], ["price", 75.18], ["user_id", 2], ["created_at", "2024-04-21 08:15:29.246095"], ["updated_at", "2024-04-21 08:15:29.246095"]]
+  [1m[36mTRANSACTION (521.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Practical Paper Watch"], ["description", "Voluptas laborum quis. Odio voluptatem est. Repellat cupiditate debitis."], ["price", 51.79], ["user_id", 9], ["created_at", "2024-04-21 08:15:29.782913"], ["updated_at", "2024-04-21 08:15:29.782913"]]
+  [1m[36mTRANSACTION (380.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Sleek Plastic Plate"], ["description", "Dolorem ab exercitationem. Tempora numquam sed. Est cumque ut."], ["price", 82.08], ["user_id", 2], ["created_at", "2024-04-21 08:15:30.318137"], ["updated_at", "2024-04-21 08:15:30.318137"]]
+  [1m[36mTRANSACTION (709.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "corie@stark.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "corie@stark.test"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:20:33.265592"], ["updated_at", "2024-04-21 08:20:33.265592"]]
+  [1m[36mTRANSACTION (307.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "reginald_prohaska@hauck.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "reginald_prohaska@hauck.test"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:20:33.800177"], ["updated_at", "2024-04-21 08:20:33.800177"]]
+  [1m[36mTRANSACTION (428.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "eladia@kertzmann.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "eladia@kertzmann.test"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:20:34.486518"], ["updated_at", "2024-04-21 08:20:34.486518"]]
+  [1m[36mTRANSACTION (388.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "rebbecca.kautzer@hettinger.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "rebbecca.kautzer@hettinger.example"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:20:35.111635"], ["updated_at", "2024-04-21 08:20:35.111635"]]
+  [1m[36mTRANSACTION (269.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "terica.bruen@lueilwitz.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "terica.bruen@lueilwitz.test"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:20:35.581942"], ["updated_at", "2024-04-21 08:20:35.581942"]]
+  [1m[36mTRANSACTION (355.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "carylon.runte@cronin.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "carylon.runte@cronin.test"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:20:36.153013"], ["updated_at", "2024-04-21 08:20:36.153013"]]
+  [1m[36mTRANSACTION (281.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "shanika_corwin@nikolaus.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "shanika_corwin@nikolaus.test"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:20:36.664354"], ["updated_at", "2024-04-21 08:20:36.664354"]]
+  [1m[36mTRANSACTION (300.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "mason@bashirian.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "mason@bashirian.test"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:20:37.199839"], ["updated_at", "2024-04-21 08:20:37.199839"]]
+  [1m[36mTRANSACTION (354.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "penni@huel.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "penni@huel.test"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:20:37.762240"], ["updated_at", "2024-04-21 08:20:37.762240"]]
+  [1m[36mTRANSACTION (370.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "monroe.huels@davis.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "monroe.huels@davis.example"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:20:38.388055"], ["updated_at", "2024-04-21 08:20:38.388055"]]
+  [1m[36mTRANSACTION (182.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.7ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Awesome Marble Chair"], ["description", "Eligendi nulla assumenda. Dolores numquam inventore. Cum velit modi."], ["price", 77.74], ["user_id", 14], ["created_at", "2024-04-21 08:20:38.631371"], ["updated_at", "2024-04-21 08:20:38.631371"]]
+  [1m[36mTRANSACTION (277.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Durable Granite Wallet"], ["description", "Inventore vitae vero. Excepturi ipsa dolore. Eos atque ut."], ["price", 29.46], ["user_id", 14], ["created_at", "2024-04-21 08:20:38.915072"], ["updated_at", "2024-04-21 08:20:38.915072"]]
+  [1m[36mTRANSACTION (427.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Synergistic Steel Table"], ["description", "Est adipisci excepturi. Quidem veniam dignissimos. Commodi quaerat sint."], ["price", 36.64], ["user_id", 15], ["created_at", "2024-04-21 08:20:39.356512"], ["updated_at", "2024-04-21 08:20:39.356512"]]
+  [1m[36mTRANSACTION (307.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Mediocre Steel Shirt"], ["description", "Pariatur enim error. Dolorem earum quo. Facilis voluptatum rem."], ["price", 39.77], ["user_id", 12], ["created_at", "2024-04-21 08:20:39.677032"], ["updated_at", "2024-04-21 08:20:39.677032"]]
+  [1m[36mTRANSACTION (188.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Mediocre Paper Bench"], ["description", "Suscipit doloribus et. Placeat pariatur libero. Velit molestiae voluptatum."], ["price", 5.09], ["user_id", 18], ["created_at", "2024-04-21 08:20:39.881241"], ["updated_at", "2024-04-21 08:20:39.881241"]]
+  [1m[36mTRANSACTION (214.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Fantastic Aluminum Chair"], ["description", "Ipsum veritatis sint. Voluptas aut ut. Nobis aspernatur dolorem."], ["price", 19.65], ["user_id", 20], ["created_at", "2024-04-21 08:20:40.114854"], ["updated_at", "2024-04-21 08:20:40.114854"]]
+  [1m[36mTRANSACTION (364.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.8ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Small Wool Wallet"], ["description", "Aliquam unde veniam. Eum similique aperiam. Nam illum voluptas."], ["price", 49.6], ["user_id", 19], ["created_at", "2024-04-21 08:20:40.497773"], ["updated_at", "2024-04-21 08:20:40.497773"]]
+  [1m[36mTRANSACTION (358.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Aerodynamic Copper Keyboard"], ["description", "Cupiditate optio voluptas. Quasi maiores molestiae. Debitis et ducimus."], ["price", 52.72], ["user_id", 17], ["created_at", "2024-04-21 08:20:40.876235"], ["updated_at", "2024-04-21 08:20:40.876235"]]
+  [1m[36mTRANSACTION (369.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Gorgeous Cotton Plate"], ["description", "Recusandae qui fuga. Suscipit ea est. Quas quibusdam voluptates."], ["price", 81.07], ["user_id", 13], ["created_at", "2024-04-21 08:20:41.257177"], ["updated_at", "2024-04-21 08:20:41.257177"]]
+  [1m[36mTRANSACTION (388.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Heavy Duty Concrete Knife"], ["description", "Minima rem dolore. Eius occaecati harum. Voluptatum corrupti odio."], ["price", 23.98], ["user_id", 11], ["created_at", "2024-04-21 08:20:41.664201"], ["updated_at", "2024-04-21 08:20:41.664201"]]
+  [1m[36mTRANSACTION (302.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/" for 127.0.0.1 at 2024-04-21 13:54:26 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/rvm/gems/ruby-2.7.5/gems/railties-7.0.8.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.7.5/gems/railties-7.0.8.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 460.8ms | Allocations: 766)
+Completed 200 OK in 2736ms (Views: 1339.3ms | ActiveRecord: 0.0ms | Allocations: 615461)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2024-04-21 13:55:04 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 5.8ms | Allocations: 921)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 1421.1ms | Allocations: 5324)
+  Rendered layout layouts/application.html.erb (Duration: 3815.3ms | Allocations: 90869)
+Completed 200 OK in 4045ms (Views: 3817.6ms | ActiveRecord: 15.0ms | Allocations: 110122)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2024-04-21 13:55:18 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 2.1ms | Allocations: 272)
+  Rendered devise/shared/_links.html.erb (Duration: 1.1ms | Allocations: 241)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 14.2ms | Allocations: 2323)
+  Rendered layout layouts/application.html.erb (Duration: 18.5ms | Allocations: 3691)
+Completed 200 OK in 26ms (Views: 22.8ms | ActiveRecord: 0.0ms | Allocations: 4867)
+
+
+Started GET "/users/password/new" for 127.0.0.1 at 2024-04-21 13:55:18 +0530
+Processing by Devise::PasswordsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/passwords/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 14)
+  Rendered devise/shared/_links.html.erb (Duration: 0.4ms | Allocations: 139)
+  Rendered devise/passwords/new.html.erb within layouts/application (Duration: 3.9ms | Allocations: 1229)
+  Rendered layout layouts/application.html.erb (Duration: 6.8ms | Allocations: 2545)
+Completed 200 OK in 12ms (Views: 9.3ms | ActiveRecord: 0.0ms | Allocations: 3628)
+
+
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+Started POST "/users/sign_in" for 127.0.0.1 at 2024-04-21 13:55:52 +0530
+Processing by Devise::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"marcos@hoeger.test", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "marcos@hoeger.test"], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Completed 303 See Other in 623ms (ActiveRecord: 2.5ms | Allocations: 6588)
+
+
+Started GET "/" for 127.0.0.1 at 2024-04-21 13:55:53 +0530
+Processing by Rails::WelcomeController#index as TURBO_STREAM
+  Rendering /usr/local/rvm/gems/ruby-2.7.5/gems/railties-7.0.8.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.7.5/gems/railties-7.0.8.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.5ms | Allocations: 449)
+Completed 200 OK in 5ms (Views: 3.1ms | ActiveRecord: 0.0ms | Allocations: 1414)
+
+
+Started GET "/" for 127.0.0.1 at 2024-04-21 13:55:53 +0530
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/rvm/gems/ruby-2.7.5/gems/railties-7.0.8.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.7.5/gems/railties-7.0.8.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.1ms | Allocations: 15)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 217)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2024-04-21 13:58:41 +0530
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 8ms (ActiveRecord: 2.4ms | Allocations: 3917)
+
+
+Started GET "/" for 127.0.0.1 at 2024-04-21 13:58:41 +0530
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/rvm/gems/ruby-2.7.5/gems/railties-7.0.8.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.7.5/gems/railties-7.0.8.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.1ms | Allocations: 15)
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 216)
+
+
+Started GET "/" for 127.0.0.1 at 2024-04-21 14:00:59 +0530
+  
+ActionController::RoutingError (uninitialized constant PagesController
+Did you mean?  DeviseController):
+  
+Started GET "/" for 127.0.0.1 at 2024-04-21 14:03:13 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProductsController#home as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/products
+Completed 302 Found in 34ms (ActiveRecord: 5.6ms | Allocations: 24597)
+
+
+Started GET "/products" for 127.0.0.1 at 2024-04-21 14:03:13 +0530
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.4ms | Allocations: 4292)
+
+
+  
+NoMethodError (undefined method `products' for #<User:0x00007f6100903a18>):
+  
+app/controllers/products_controller.rb:15:in `index'
+Started GET "/products" for 127.0.0.1 at 2024-04-21 14:04:36 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/index.html.erb within layouts/application (Duration: 3.6ms | Allocations: 1143)
+  Rendered layout layouts/application.html.erb (Duration: 37.8ms | Allocations: 32949)
+Completed 200 OK in 969ms (Views: 43.3ms | ActiveRecord: 7.7ms | Allocations: 675414)
+
+
+Started GET "/products/new" for 127.0.0.1 at 2024-04-21 14:04:40 +0530
+Processing by ProductsController#new as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/new.html.erb within layouts/application
+  Rendered products/_form.html.erb (Duration: 300.2ms | Allocations: 2957)
+  Rendered products/new.html.erb within layouts/application (Duration: 302.2ms | Allocations: 3268)
+  Rendered layout layouts/application.html.erb (Duration: 308.0ms | Allocations: 4583)
+Completed 200 OK in 346ms (Views: 309.3ms | ActiveRecord: 5.4ms | Allocations: 20327)
+
+
+Started GET "/products/new" for 127.0.0.1 at 2024-04-21 14:08:16 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProductsController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/new.html.erb within layouts/application
+  Rendered products/_form.html.erb (Duration: 16.3ms | Allocations: 2604)
+  Rendered products/new.html.erb within layouts/application (Duration: 18.8ms | Allocations: 3116)
+  Rendered layout layouts/application.html.erb (Duration: 79.3ms | Allocations: 35352)
+Completed 200 OK in 440ms (Views: 84.1ms | ActiveRecord: 5.6ms | Allocations: 687184)
+
+
+Started POST "/products" for 127.0.0.1 at 2024-04-21 14:08:35 +0530
+Processing by ProductsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "product"=>{"name"=>"rahul pal", "description"=>"demo des", "price"=>"12.34"}, "commit"=>"Create Product"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/products_controller.rb:37:in `block in create'
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "rahul pal"], ["description", "demo des"], ["price", 12.34], ["user_id", 1], ["created_at", "2024-04-21 08:38:35.499530"], ["updated_at", "2024-04-21 08:38:35.499530"]]
+  ↳ app/controllers/products_controller.rb:37:in `block in create'
+  [1m[36mTRANSACTION (476.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/products_controller.rb:37:in `block in create'
+Redirected to http://127.0.0.1:3000/products/21
+Completed 302 Found in 488ms (ActiveRecord: 477.9ms | Allocations: 5832)
+
+
+Started GET "/products/21" for 127.0.0.1 at 2024-04-21 14:08:35 +0530
+Processing by ProductsController#show as TURBO_STREAM
+  Parameters: {"id"=>"21"}
+  [1m[36mProduct Load (1.3ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:73:in `set_product'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/show.html.erb within layouts/application
+  Rendered products/_product.html.erb (Duration: 2.1ms | Allocations: 279)
+  Rendered products/show.html.erb within layouts/application (Duration: 198.6ms | Allocations: 1247)
+  Rendered layout layouts/application.html.erb (Duration: 204.8ms | Allocations: 2554)
+Completed 200 OK in 223ms (Views: 206.2ms | ActiveRecord: 2.0ms | Allocations: 5242)
+
+
+Started GET "/products" for 127.0.0.1 at 2024-04-21 14:08:41 +0530
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/index.html.erb within layouts/application (Duration: 4.9ms | Allocations: 1019)
+  Rendered layout layouts/application.html.erb (Duration: 7.3ms | Allocations: 2329)
+Completed 200 OK in 27ms (Views: 7.6ms | ActiveRecord: 1.6ms | Allocations: 6701)
+
+
+Started GET "/products" for 127.0.0.1 at 2024-04-21 14:08:44 +0530
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.3ms | Allocations: 23)
+  Rendered products/index.html.erb within layouts/application (Duration: 6.7ms | Allocations: 750)
+  Rendered layout layouts/application.html.erb (Duration: 12.7ms | Allocations: 2052)
+Completed 200 OK in 25ms (Views: 13.2ms | ActiveRecord: 2.1ms | Allocations: 3689)
+
+
+Started GET "/products/21" for 127.0.0.1 at 2024-04-21 14:08:51 +0530
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:73:in `set_product'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/show.html.erb within layouts/application
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 23)
+  Rendered products/show.html.erb within layouts/application (Duration: 1.6ms | Allocations: 385)
+  Rendered layout layouts/application.html.erb (Duration: 5.0ms | Allocations: 1686)
+Completed 200 OK in 18ms (Views: 6.0ms | ActiveRecord: 1.8ms | Allocations: 3587)
+
+
+Started GET "/products/new" for 127.0.0.1 at 2024-04-21 14:08:52 +0530
+Processing by ProductsController#new as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/new.html.erb within layouts/application
+  Rendered products/_form.html.erb (Duration: 7.0ms | Allocations: 1064)
+  Rendered products/new.html.erb within layouts/application (Duration: 7.8ms | Allocations: 1144)
+  Rendered layout layouts/application.html.erb (Duration: 11.1ms | Allocations: 2453)
+Completed 200 OK in 22ms (Views: 12.6ms | ActiveRecord: 0.8ms | Allocations: 3893)
+
+
+Started GET "/products" for 127.0.0.1 at 2024-04-21 14:08:53 +0530
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.3ms | Allocations: 23)
+  Rendered products/index.html.erb within layouts/application (Duration: 6.1ms | Allocations: 750)
+  Rendered layout layouts/application.html.erb (Duration: 11.3ms | Allocations: 2051)
+Completed 200 OK in 22ms (Views: 11.8ms | ActiveRecord: 1.7ms | Allocations: 3666)
+
+
+Started POST "/products" for 127.0.0.1 at 2024-04-21 14:09:05 +0530
+Processing by ProductsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "product"=>{"name"=>"rahul pal1", "description"=>"sg", "price"=>"54"}, "commit"=>"Create Product"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/products_controller.rb:37:in `block in create'
+  [1m[36mProduct Create (0.7ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "rahul pal1"], ["description", "sg"], ["price", 54.0], ["user_id", 1], ["created_at", "2024-04-21 08:39:05.152496"], ["updated_at", "2024-04-21 08:39:05.152496"]]
+  ↳ app/controllers/products_controller.rb:37:in `block in create'
+  [1m[36mTRANSACTION (369.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/products_controller.rb:37:in `block in create'
+Redirected to http://127.0.0.1:3000/products/22
+Completed 302 Found in 388ms (ActiveRecord: 370.7ms | Allocations: 3211)
+
+
+Started GET "/products/22" for 127.0.0.1 at 2024-04-21 14:09:05 +0530
+Processing by ProductsController#show as TURBO_STREAM
+  Parameters: {"id"=>"22"}
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:73:in `set_product'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/show.html.erb within layouts/application
+  Rendered products/_product.html.erb (Duration: 0.3ms | Allocations: 23)
+  Rendered products/show.html.erb within layouts/application (Duration: 2.9ms | Allocations: 388)
+  Rendered layout layouts/application.html.erb (Duration: 8.5ms | Allocations: 1688)
+Completed 200 OK in 23ms (Views: 9.9ms | ActiveRecord: 2.0ms | Allocations: 3596)
+
+
+Started GET "/products/22/edit" for 127.0.0.1 at 2024-04-21 14:09:07 +0530
+Processing by ProductsController#edit as HTML
+  Parameters: {"id"=>"22"}
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:73:in `set_product'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/edit.html.erb within layouts/application
+  Rendered products/_form.html.erb (Duration: 1.6ms | Allocations: 1170)
+  Rendered products/edit.html.erb within layouts/application (Duration: 2.3ms | Allocations: 1471)
+  Rendered layout layouts/application.html.erb (Duration: 4.2ms | Allocations: 2777)
+Completed 200 OK in 8ms (Views: 4.6ms | ActiveRecord: 0.6ms | Allocations: 4730)
+
+
+Started GET "/products" for 127.0.0.1 at 2024-04-21 14:09:07 +0530
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 22)
+  Rendered products/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 885)
+  Rendered layout layouts/application.html.erb (Duration: 5.5ms | Allocations: 2186)
+Completed 200 OK in 10ms (Views: 5.6ms | ActiveRecord: 0.8ms | Allocations: 3820)
+
+
+Started GET "/products" for 127.0.0.1 at 2024-04-21 14:09:40 +0530
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 15.6ms | Allocations: 7581)
+  Rendered products/index.html.erb within layouts/application (Duration: 19.9ms | Allocations: 8578)
+  Rendered layout layouts/application.html.erb (Duration: 20.0ms | Allocations: 8645)
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.8ms | Allocations: 11179)
+
+
+  
+ActionView::Template::Error (undefined method `user_email' for #<Product:0x00007f0b4d744aa0>
+Did you mean?  user_id):
+    16: 
+    17:   <p>
+    18:     <strong>User:</strong>
+    19:     <%= product.user_email %>
+    20:   </p>
+    21: 
+    22: </div>
+  
+app/views/products/_product.html.erb:19
+app/views/products/index.html.erb:7
+app/views/products/index.html.erb:6
+Started GET "/products" for 127.0.0.1 at 2024-04-21 14:09:51 +0530
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.9ms | Allocations: 269)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 22)
+  Rendered products/index.html.erb within layouts/application (Duration: 5.9ms | Allocations: 1460)
+  Rendered layout layouts/application.html.erb (Duration: 9.2ms | Allocations: 3002)
+Completed 200 OK in 25ms (Views: 11.1ms | ActiveRecord: 1.3ms | Allocations: 5551)
+
+
+Started GET "/products/22" for 127.0.0.1 at 2024-04-21 14:11:05 +0530
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"22"}
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:73:in `set_product'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/show.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_product.html.erb:19
+  Rendered products/_product.html.erb (Duration: 6.7ms | Allocations: 1586)
+  Rendered products/show.html.erb within layouts/application (Duration: 10.1ms | Allocations: 2163)
+  Rendered layout layouts/application.html.erb (Duration: 14.6ms | Allocations: 3469)
+Completed 200 OK in 35ms (Views: 15.9ms | ActiveRecord: 2.7ms | Allocations: 5443)
+
+
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "rosamaria@pfeffer.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "rosamaria@pfeffer.test"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:42:32.599331"], ["updated_at", "2024-04-21 08:42:32.599331"]]
+  [1m[36mTRANSACTION (264.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sarita.bruen@cruickshank-franecki.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "sarita.bruen@cruickshank-franecki.example"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:42:33.068275"], ["updated_at", "2024-04-21 08:42:33.068275"]]
+  [1m[36mTRANSACTION (342.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jed.robel@parisian.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "jed.robel@parisian.test"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:42:33.636894"], ["updated_at", "2024-04-21 08:42:33.636894"]]
+  [1m[36mTRANSACTION (282.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "rodolfo_kris@hermann-sanford.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "rodolfo_kris@hermann-sanford.example"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:42:34.147922"], ["updated_at", "2024-04-21 08:42:34.147922"]]
+  [1m[36mTRANSACTION (270.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ilse_okon@wilderman.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "ilse_okon@wilderman.test"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:42:34.647869"], ["updated_at", "2024-04-21 08:42:34.647869"]]
+  [1m[36mTRANSACTION (307.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "waldo.kreiger@russel.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "waldo.kreiger@russel.example"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:42:35.189256"], ["updated_at", "2024-04-21 08:42:35.189256"]]
+  [1m[36mTRANSACTION (702.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "perry.predovic@little.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "perry.predovic@little.test"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:42:36.096309"], ["updated_at", "2024-04-21 08:42:36.096309"]]
+  [1m[36mTRANSACTION (331.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "iliana_graham@bergnaum.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "iliana_graham@bergnaum.example"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:42:36.656505"], ["updated_at", "2024-04-21 08:42:36.656505"]]
+  [1m[36mTRANSACTION (341.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "modesto@legros-prosacco.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "modesto@legros-prosacco.test"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:42:37.231745"], ["updated_at", "2024-04-21 08:42:37.231745"]]
+  [1m[36mTRANSACTION (349.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "willie_herzog@hodkiewicz.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "willie_herzog@hodkiewicz.example"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-04-21 08:42:37.813538"], ["updated_at", "2024-04-21 08:42:37.813538"]]
+  [1m[36mTRANSACTION (196.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.7ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Ergonomic Silk Bench"], ["description", "Modi earum minima. Cum quis nesciunt. Rerum omnis explicabo."], ["price", 4.52], ["user_id", 23], ["created_at", "2024-04-21 08:42:38.088556"], ["updated_at", "2024-04-21 08:42:38.088556"]]
+  [1m[36mTRANSACTION (297.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Ergonomic Plastic Plate"], ["description", "Sit et et. Dolores illum ratione. Voluptatem tempora ut."], ["price", 92.48], ["user_id", 24], ["created_at", "2024-04-21 08:42:38.401865"], ["updated_at", "2024-04-21 08:42:38.401865"]]
+  [1m[36mTRANSACTION (461.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 30], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Heavy Duty Wool Bench"], ["description", "Rerum aliquam id. Nesciunt voluptatem omnis. Possimus dolores maxime."], ["price", 54.8], ["user_id", 30], ["created_at", "2024-04-21 08:42:38.881485"], ["updated_at", "2024-04-21 08:42:38.881485"]]
+  [1m[36mTRANSACTION (316.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Intelligent Leather Table"], ["description", "Corrupti animi maxime. Sed voluptatem molestiae. Explicabo nisi aliquam."], ["price", 91.68], ["user_id", 26], ["created_at", "2024-04-21 08:42:39.212944"], ["updated_at", "2024-04-21 08:42:39.212944"]]
+  [1m[36mTRANSACTION (342.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Mediocre Rubber Plate"], ["description", "Laborum ipsam quia. Ipsam sequi et. Qui qui incidunt."], ["price", 49.1], ["user_id", 28], ["created_at", "2024-04-21 08:42:39.574232"], ["updated_at", "2024-04-21 08:42:39.574232"]]
+  [1m[36mTRANSACTION (152.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Mediocre Rubber Knife"], ["description", "Voluptatibus debitis eveniet. Facilis voluptatem earum. Modi deserunt laudantium."], ["price", 37.32], ["user_id", 21], ["created_at", "2024-04-21 08:42:39.749427"], ["updated_at", "2024-04-21 08:42:39.749427"]]
+  [1m[36mTRANSACTION (351.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Heavy Duty Wooden Lamp"], ["description", "Necessitatibus modi debitis. Dolorum voluptatem eligendi. Perferendis cumque et."], ["price", 22.43], ["user_id", 21], ["created_at", "2024-04-21 08:42:40.115611"], ["updated_at", "2024-04-21 08:42:40.115611"]]
+  [1m[36mTRANSACTION (385.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Practical Bronze Watch"], ["description", "Et ratione hic. Id quasi impedit. Ut ea rerum."], ["price", 23.39], ["user_id", 21], ["created_at", "2024-04-21 08:42:40.511765"], ["updated_at", "2024-04-21 08:42:40.511765"]]
+  [1m[36mTRANSACTION (298.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Gorgeous Granite Clock"], ["description", "Quod magnam consequatur. Culpa et laborum. Perspiciatis illum fuga."], ["price", 96.69], ["user_id", 29], ["created_at", "2024-04-21 08:42:40.829313"], ["updated_at", "2024-04-21 08:42:40.829313"]]
+  [1m[36mTRANSACTION (152.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Lightweight Aluminum Bench"], ["description", "Architecto quo deserunt. Assumenda natus ipsum. Ullam tempore quo."], ["price", 65.14], ["user_id", 27], ["created_at", "2024-04-21 08:42:41.005520"], ["updated_at", "2024-04-21 08:42:41.005520"]]
+  [1m[36mTRANSACTION (664.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Sleek Concrete Computer"], ["description", "Dolore omnis incidunt. Neque maxime eaque. Voluptatem labore quae."], ["price", 48.73], ["user_id", 29], ["created_at", "2024-04-21 08:42:41.681361"], ["updated_at", "2024-04-21 08:42:41.681361"]]
+  [1m[36mTRANSACTION (388.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Intelligent Aluminum Computer"], ["description", "Et hic maxime. Aliquam molestiae saepe. Aspernatur quod repellat."], ["price", 56.31], ["user_id", 27], ["created_at", "2024-04-21 08:42:42.087590"], ["updated_at", "2024-04-21 08:42:42.087590"]]
+  [1m[36mTRANSACTION (314.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Awesome Wooden Car"], ["description", "Exercitationem ratione et. Maxime qui sed. Tempora nisi repudiandae."], ["price", 63.87], ["user_id", 23], ["created_at", "2024-04-21 08:42:42.413428"], ["updated_at", "2024-04-21 08:42:42.413428"]]
+  [1m[36mTRANSACTION (186.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Intelligent Granite Pants"], ["description", "Natus assumenda deleniti. Rem et iure. Eligendi tempore aspernatur."], ["price", 48.56], ["user_id", 21], ["created_at", "2024-04-21 08:42:42.618414"], ["updated_at", "2024-04-21 08:42:42.618414"]]
+  [1m[36mTRANSACTION (214.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Intelligent Rubber Bottle"], ["description", "Necessitatibus eaque ea. Placeat maxime debitis. Et ut non."], ["price", 29.82], ["user_id", 23], ["created_at", "2024-04-21 08:42:42.856193"], ["updated_at", "2024-04-21 08:42:42.856193"]]
+  [1m[36mTRANSACTION (516.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 30], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Small Steel Bench"], ["description", "Quidem et mollitia. Velit aut eum. Eos est eos."], ["price", 51.64], ["user_id", 30], ["created_at", "2024-04-21 08:42:43.387909"], ["updated_at", "2024-04-21 08:42:43.387909"]]
+  [1m[36mTRANSACTION (367.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Ergonomic Silk Pants"], ["description", "Reiciendis quia hic. In repellendus odit. Cum et sunt."], ["price", 97.0], ["user_id", 25], ["created_at", "2024-04-21 08:42:43.775022"], ["updated_at", "2024-04-21 08:42:43.775022"]]
+  [1m[36mTRANSACTION (334.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Fantastic Steel Shirt"], ["description", "Commodi nam velit. Eaque adipisci minima. Est odio facere."], ["price", 73.56], ["user_id", 25], ["created_at", "2024-04-21 08:42:44.124796"], ["updated_at", "2024-04-21 08:42:44.124796"]]
+  [1m[36mTRANSACTION (332.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Intelligent Wooden Table"], ["description", "Sapiente ratione optio. Culpa repellendus natus. Pariatur fuga officia."], ["price", 64.95], ["user_id", 28], ["created_at", "2024-04-21 08:42:44.476335"], ["updated_at", "2024-04-21 08:42:44.476335"]]
+  [1m[36mTRANSACTION (277.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Enormous Leather Shoes"], ["description", "Est voluptas eos. Porro deleniti magnam. Aut porro quo."], ["price", 43.08], ["user_id", 29], ["created_at", "2024-04-21 08:42:44.763138"], ["updated_at", "2024-04-21 08:42:44.763138"]]
+  [1m[36mTRANSACTION (189.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Fantastic Iron Shoes"], ["description", "Eos et eum. Vel culpa consectetur. Magnam saepe quis."], ["price", 84.77], ["user_id", 28], ["created_at", "2024-04-21 08:42:44.970122"], ["updated_at", "2024-04-21 08:42:44.970122"]]
+  [1m[36mTRANSACTION (395.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Awesome Aluminum Table"], ["description", "Cupiditate error pariatur. Sunt amet harum. Hic quo officiis."], ["price", 42.54], ["user_id", 29], ["created_at", "2024-04-21 08:42:45.389448"], ["updated_at", "2024-04-21 08:42:45.389448"]]
+  [1m[36mTRANSACTION (449.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Intelligent Wool Shoes"], ["description", "Distinctio non accusantium. Possimus officiis consectetur. Vel mollitia nam."], ["price", 50.07], ["user_id", 21], ["created_at", "2024-04-21 08:42:46.014572"], ["updated_at", "2024-04-21 08:42:46.014572"]]
+  [1m[36mTRANSACTION (457.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Gorgeous Wooden Gloves"], ["description", "Qui doloribus velit. Beatae aut et. Tempora saepe esse."], ["price", 38.36], ["user_id", 25], ["created_at", "2024-04-21 08:42:46.494956"], ["updated_at", "2024-04-21 08:42:46.494956"]]
+  [1m[36mTRANSACTION (407.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Sleek Paper Bench"], ["description", "Ut est non. Ipsam quod pariatur. Accusamus qui pariatur."], ["price", 18.65], ["user_id", 23], ["created_at", "2024-04-21 08:42:46.924719"], ["updated_at", "2024-04-21 08:42:46.924719"]]
+  [1m[36mTRANSACTION (141.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rustic Wooden Clock"], ["description", "Similique libero dolores. Dolores neque fugiat. Et ratione sint."], ["price", 17.5], ["user_id", 27], ["created_at", "2024-04-21 08:42:47.088384"], ["updated_at", "2024-04-21 08:42:47.088384"]]
+  [1m[36mTRANSACTION (419.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Fantastic Copper Lamp"], ["description", "Neque et iusto. Atque dicta voluptas. Architecto ratione doloribus."], ["price", 43.76], ["user_id", 29], ["created_at", "2024-04-21 08:42:47.530959"], ["updated_at", "2024-04-21 08:42:47.530959"]]
+  [1m[36mTRANSACTION (302.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Ergonomic Wool Bag"], ["description", "Facere dolore sunt. Earum commodi non. Sequi cum quibusdam."], ["price", 30.47], ["user_id", 28], ["created_at", "2024-04-21 08:42:47.848027"], ["updated_at", "2024-04-21 08:42:47.848027"]]
+  [1m[36mTRANSACTION (161.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Aerodynamic Steel Shirt"], ["description", "Officia aut rerum. Blanditiis possimus officiis. Dolorem sunt distinctio."], ["price", 45.99], ["user_id", 29], ["created_at", "2024-04-21 08:42:48.027538"], ["updated_at", "2024-04-21 08:42:48.027538"]]
+  [1m[36mTRANSACTION (257.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Lightweight Leather Bench"], ["description", "Fuga ut quisquam. Voluptates est deserunt. Sunt quaerat corporis."], ["price", 57.33], ["user_id", 22], ["created_at", "2024-04-21 08:42:48.296179"], ["updated_at", "2024-04-21 08:42:48.296179"]]
+  [1m[36mTRANSACTION (362.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.8ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Ergonomic Concrete Hat"], ["description", "Aliquam omnis modi. Quia eum provident. Non iusto facilis."], ["price", 96.93], ["user_id", 25], ["created_at", "2024-04-21 08:42:48.676617"], ["updated_at", "2024-04-21 08:42:48.676617"]]
+  [1m[36mTRANSACTION (388.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Fantastic Concrete Computer"], ["description", "Voluptatem minus facilis. Est quam amet. Numquam tempora quibusdam."], ["price", 92.51], ["user_id", 26], ["created_at", "2024-04-21 08:42:49.089070"], ["updated_at", "2024-04-21 08:42:49.089070"]]
+  [1m[36mTRANSACTION (348.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Heavy Duty Aluminum Bag"], ["description", "Labore enim atque. Minus eum molestiae. Facere amet animi."], ["price", 64.28], ["user_id", 27], ["created_at", "2024-04-21 08:42:49.457022"], ["updated_at", "2024-04-21 08:42:49.457022"]]
+  [1m[36mTRANSACTION (358.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 30], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Awesome Silk Bench"], ["description", "Nihil dignissimos quisquam. Nam incidunt omnis. Autem quia ut."], ["price", 0.94], ["user_id", 30], ["created_at", "2024-04-21 08:42:49.830881"], ["updated_at", "2024-04-21 08:42:49.830881"]]
+  [1m[36mTRANSACTION (367.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Fantastic Steel Lamp"], ["description", "Dolores numquam ab. A odit eaque. Ratione distinctio harum."], ["price", 36.14], ["user_id", 25], ["created_at", "2024-04-21 08:42:50.217831"], ["updated_at", "2024-04-21 08:42:50.217831"]]
+  [1m[36mTRANSACTION (335.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Ergonomic Marble Hat"], ["description", "Omnis nam sint. Quia nisi vero. Sint accusamus et."], ["price", 50.88], ["user_id", 26], ["created_at", "2024-04-21 08:42:50.577091"], ["updated_at", "2024-04-21 08:42:50.577091"]]
+  [1m[36mTRANSACTION (225.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Incredible Aluminum Wallet"], ["description", "Sed quia odit. Hic modi quis. Sint exercitationem dolore."], ["price", 17.73], ["user_id", 21], ["created_at", "2024-04-21 08:42:50.817287"], ["updated_at", "2024-04-21 08:42:50.817287"]]
+  [1m[36mTRANSACTION (371.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Fantastic Steel Coat"], ["description", "Expedita ut et. Quia repellat non. Eveniet iure eos."], ["price", 22.27], ["user_id", 22], ["created_at", "2024-04-21 08:42:51.201775"], ["updated_at", "2024-04-21 08:42:51.201775"]]
+  [1m[36mTRANSACTION (322.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Small Granite Bottle"], ["description", "Eaque voluptatem qui. Qui laborum aut. Ex voluptatem tempore."], ["price", 84.61], ["user_id", 29], ["created_at", "2024-04-21 08:42:51.530666"], ["updated_at", "2024-04-21 08:42:51.530666"]]
+  [1m[36mTRANSACTION (411.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Ergonomic Copper Chair"], ["description", "Dolores velit reiciendis. Ipsa illum harum. Odio dolorum et."], ["price", 21.1], ["user_id", 29], ["created_at", "2024-04-21 08:42:51.960284"], ["updated_at", "2024-04-21 08:42:51.960284"]]
+  [1m[36mTRANSACTION (344.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Sleek Bronze Shirt"], ["description", "Ad est at. Nesciunt aut eos. Est temporibus possimus."], ["price", 17.7], ["user_id", 26], ["created_at", "2024-04-21 08:42:52.475671"], ["updated_at", "2024-04-21 08:42:52.475671"]]
+  [1m[36mTRANSACTION (379.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.7ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Heavy Duty Rubber Computer"], ["description", "Adipisci et reiciendis. Vel aspernatur nihil. Earum sed molestiae."], ["price", 77.45], ["user_id", 25], ["created_at", "2024-04-21 08:42:52.868932"], ["updated_at", "2024-04-21 08:42:52.868932"]]
+  [1m[36mTRANSACTION (462.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Aerodynamic Leather Shirt"], ["description", "Ut id quia. Nostrum quidem consequatur. Aliquam consequatur cumque."], ["price", 21.59], ["user_id", 29], ["created_at", "2024-04-21 08:42:53.351852"], ["updated_at", "2024-04-21 08:42:53.351852"]]
+  [1m[36mTRANSACTION (349.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Ergonomic Marble Watch"], ["description", "Ab suscipit in. Ullam quaerat sapiente. Earum inventore aperiam."], ["price", 84.6], ["user_id", 21], ["created_at", "2024-04-21 08:42:53.711396"], ["updated_at", "2024-04-21 08:42:53.711396"]]
+  [1m[36mTRANSACTION (390.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Gorgeous Linen Bag"], ["description", "Iure nemo necessitatibus. Dolorum natus autem. Quibusdam sed et."], ["price", 2.61], ["user_id", 23], ["created_at", "2024-04-21 08:42:54.115140"], ["updated_at", "2024-04-21 08:42:54.115140"]]
+  [1m[36mTRANSACTION (437.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Synergistic Paper Bottle"], ["description", "Quibusdam incidunt voluptates. Et dolor qui. Et illum suscipit."], ["price", 10.28], ["user_id", 22], ["created_at", "2024-04-21 08:42:54.558920"], ["updated_at", "2024-04-21 08:42:54.558920"]]
+  [1m[36mTRANSACTION (356.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Fantastic Plastic Hat"], ["description", "Dicta est debitis. Fugiat vel ea. Rem cum consequatur."], ["price", 8.53], ["user_id", 21], ["created_at", "2024-04-21 08:42:54.926774"], ["updated_at", "2024-04-21 08:42:54.926774"]]
+  [1m[36mTRANSACTION (327.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Practical Iron Bench"], ["description", "Aut quod ipsa. Eaque odit facere. Iure voluptas maiores."], ["price", 37.78], ["user_id", 28], ["created_at", "2024-04-21 08:42:55.390440"], ["updated_at", "2024-04-21 08:42:55.390440"]]
+  [1m[36mTRANSACTION (414.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Sleek Linen Shoes"], ["description", "Sed tempora nisi. Magni nulla aut. Ut sit perferendis."], ["price", 35.68], ["user_id", 29], ["created_at", "2024-04-21 08:42:55.821964"], ["updated_at", "2024-04-21 08:42:55.821964"]]
+  [1m[36mTRANSACTION (392.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Mediocre Rubber Chair"], ["description", "Harum illum reprehenderit. Aperiam sequi at. Quaerat sint ullam."], ["price", 62.52], ["user_id", 25], ["created_at", "2024-04-21 08:42:56.233561"], ["updated_at", "2024-04-21 08:42:56.233561"]]
+  [1m[36mTRANSACTION (349.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Intelligent Aluminum Bench"], ["description", "Expedita consequatur voluptate. Non et veritatis. Deserunt ut sunt."], ["price", 98.45], ["user_id", 25], ["created_at", "2024-04-21 08:42:56.598622"], ["updated_at", "2024-04-21 08:42:56.598622"]]
+  [1m[36mTRANSACTION (328.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Enormous Paper Keyboard"], ["description", "Voluptatem praesentium non. Amet dolores ab. Eum nobis voluptate."], ["price", 79.22], ["user_id", 27], ["created_at", "2024-04-21 08:42:56.946564"], ["updated_at", "2024-04-21 08:42:56.946564"]]
+  [1m[36mTRANSACTION (358.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Enormous Iron Bag"], ["description", "Aliquid aut blanditiis. Omnis non aut. In iure sit."], ["price", 30.98], ["user_id", 26], ["created_at", "2024-04-21 08:42:57.328694"], ["updated_at", "2024-04-21 08:42:57.328694"]]
+  [1m[36mTRANSACTION (427.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.2ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Small Iron Table"], ["description", "Ad molestiae sed. Error mollitia id. Occaecati ut error."], ["price", 40.06], ["user_id", 21], ["created_at", "2024-04-21 08:42:57.779226"], ["updated_at", "2024-04-21 08:42:57.779226"]]
+  [1m[36mTRANSACTION (392.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.2ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Aerodynamic Iron Coat"], ["description", "Tenetur quaerat odit. Ducimus deleniti ab. Consequatur tempora non."], ["price", 8.57], ["user_id", 24], ["created_at", "2024-04-21 08:42:58.193546"], ["updated_at", "2024-04-21 08:42:58.193546"]]
+  [1m[36mTRANSACTION (312.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Sleek Wool Pants"], ["description", "Mollitia provident quis. Quis id quos. Laborum aliquam nam."], ["price", 58.65], ["user_id", 27], ["created_at", "2024-04-21 08:42:58.520654"], ["updated_at", "2024-04-21 08:42:58.520654"]]
+  [1m[36mTRANSACTION (230.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Synergistic Copper Lamp"], ["description", "Consequuntur sint eos. Nihil dicta adipisci. Ipsam aut nobis."], ["price", 69.94], ["user_id", 24], ["created_at", "2024-04-21 08:42:58.768660"], ["updated_at", "2024-04-21 08:42:58.768660"]]
+  [1m[36mTRANSACTION (382.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Fantastic Concrete Bag"], ["description", "Quia quam et. Necessitatibus accusamus rerum. Autem impedit optio."], ["price", 69.8], ["user_id", 23], ["created_at", "2024-04-21 08:42:59.174179"], ["updated_at", "2024-04-21 08:42:59.174179"]]
+  [1m[36mTRANSACTION (281.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rustic Wooden Table"], ["description", "Esse dicta aut. Officiis vel iste. Est est rerum."], ["price", 8.84], ["user_id", 27], ["created_at", "2024-04-21 08:42:59.470673"], ["updated_at", "2024-04-21 08:42:59.470673"]]
+  [1m[36mTRANSACTION (551.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 30], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rustic Wool Shoes"], ["description", "Reprehenderit expedita enim. Aut non dignissimos. Odio quam alias."], ["price", 75.28], ["user_id", 30], ["created_at", "2024-04-21 08:43:00.040220"], ["updated_at", "2024-04-21 08:43:00.040220"]]
+  [1m[36mTRANSACTION (412.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Enormous Leather Lamp"], ["description", "Et asperiores laudantium. Ex sequi earum. Et harum eum."], ["price", 86.97], ["user_id", 27], ["created_at", "2024-04-21 08:43:00.467652"], ["updated_at", "2024-04-21 08:43:00.467652"]]
+  [1m[36mTRANSACTION (309.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Awesome Rubber Bag"], ["description", "Sit numquam aperiam. Eum assumenda voluptatem. Delectus quibusdam modi."], ["price", 49.13], ["user_id", 23], ["created_at", "2024-04-21 08:43:00.795507"], ["updated_at", "2024-04-21 08:43:00.795507"]]
+  [1m[36mTRANSACTION (212.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Awesome Wool Chair"], ["description", "Commodi architecto sunt. Eum nemo modi. Temporibus velit fuga."], ["price", 72.54], ["user_id", 25], ["created_at", "2024-04-21 08:43:01.029112"], ["updated_at", "2024-04-21 08:43:01.029112"]]
+  [1m[36mTRANSACTION (403.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Durable Paper Clock"], ["description", "Nobis numquam praesentium. Iure consequuntur et. Dolorum iste rem."], ["price", 51.58], ["user_id", 23], ["created_at", "2024-04-21 08:43:01.455986"], ["updated_at", "2024-04-21 08:43:01.455986"]]
+  [1m[36mTRANSACTION (369.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Gorgeous Iron Hat"], ["description", "Mollitia non sed. Inventore et porro. Nisi et eveniet."], ["price", 2.96], ["user_id", 22], ["created_at", "2024-04-21 08:43:01.848980"], ["updated_at", "2024-04-21 08:43:01.848980"]]
+  [1m[36mTRANSACTION (297.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Gorgeous Iron Bench"], ["description", "Placeat non a. Velit illo consequatur. Occaecati earum atque."], ["price", 10.41], ["user_id", 22], ["created_at", "2024-04-21 08:43:02.161449"], ["updated_at", "2024-04-21 08:43:02.161449"]]
+  [1m[36mTRANSACTION (223.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Incredible Wooden Plate"], ["description", "Dolorem eligendi saepe. Nam ea tempore. Id earum voluptas."], ["price", 50.78], ["user_id", 27], ["created_at", "2024-04-21 08:43:02.413101"], ["updated_at", "2024-04-21 08:43:02.413101"]]
+  [1m[36mTRANSACTION (282.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Awesome Cotton Keyboard"], ["description", "Suscipit sint facere. Impedit aut ut. Velit blanditiis et."], ["price", 67.12], ["user_id", 25], ["created_at", "2024-04-21 08:43:02.728105"], ["updated_at", "2024-04-21 08:43:02.728105"]]
+  [1m[36mTRANSACTION (125.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.8ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Incredible Silk Gloves"], ["description", "Alias quis consequatur. Ratione et veritatis. Officia eaque tempore."], ["price", 91.47], ["user_id", 28], ["created_at", "2024-04-21 08:43:02.891279"], ["updated_at", "2024-04-21 08:43:02.891279"]]
+  [1m[36mTRANSACTION (142.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Synergistic Rubber Bag"], ["description", "Aut voluptas et. Ea ad repudiandae. Nihil aliquam aperiam."], ["price", 60.26], ["user_id", 23], ["created_at", "2024-04-21 08:43:03.067389"], ["updated_at", "2024-04-21 08:43:03.067389"]]
+  [1m[36mTRANSACTION (196.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Ergonomic Linen Hat"], ["description", "Error sit est. Minima qui veritatis. Voluptas rem rerum."], ["price", 53.4], ["user_id", 25], ["created_at", "2024-04-21 08:43:03.298447"], ["updated_at", "2024-04-21 08:43:03.298447"]]
+  [1m[36mTRANSACTION (380.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Durable Paper Computer"], ["description", "Mollitia numquam illo. Dolorum ea unde. Sit neque temporibus."], ["price", 4.93], ["user_id", 21], ["created_at", "2024-04-21 08:43:03.706439"], ["updated_at", "2024-04-21 08:43:03.706439"]]
+  [1m[36mTRANSACTION (110.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Practical Leather Wallet"], ["description", "Ipsum excepturi magnam. Itaque soluta perspiciatis. Asperiores omnis minus."], ["price", 12.73], ["user_id", 27], ["created_at", "2024-04-21 08:43:03.845802"], ["updated_at", "2024-04-21 08:43:03.845802"]]
+  [1m[36mTRANSACTION (143.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Practical Wooden Gloves"], ["description", "Est corrupti eligendi. Sint qui velit. Accusantium laboriosam eligendi."], ["price", 29.49], ["user_id", 24], ["created_at", "2024-04-21 08:43:04.020883"], ["updated_at", "2024-04-21 08:43:04.020883"]]
+  [1m[36mTRANSACTION (83.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Mediocre Concrete Bag"], ["description", "Asperiores nihil placeat. Doloremque et minima. Doloremque in corrupti."], ["price", 70.13], ["user_id", 27], ["created_at", "2024-04-21 08:43:04.132399"], ["updated_at", "2024-04-21 08:43:04.132399"]]
+  [1m[36mTRANSACTION (202.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Sleek Granite Wallet"], ["description", "Occaecati totam ea. Consequatur delectus libero. Neque reprehenderit qui."], ["price", 47.81], ["user_id", 27], ["created_at", "2024-04-21 08:43:04.362513"], ["updated_at", "2024-04-21 08:43:04.362513"]]
+  [1m[36mTRANSACTION (145.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Sleek Iron Hat"], ["description", "Qui eaque aliquid. Ratione sed unde. Excepturi et voluptates."], ["price", 88.29], ["user_id", 25], ["created_at", "2024-04-21 08:43:04.536822"], ["updated_at", "2024-04-21 08:43:04.536822"]]
+  [1m[36mTRANSACTION (142.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Durable Linen Car"], ["description", "Quo pariatur placeat. Distinctio quas dolor. Fuga vel soluta."], ["price", 71.79], ["user_id", 24], ["created_at", "2024-04-21 08:43:04.712558"], ["updated_at", "2024-04-21 08:43:04.712558"]]
+  [1m[36mTRANSACTION (140.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Small Copper Bottle"], ["description", "Nobis quod fuga. Repellendus omnis voluptatem. Est et eos."], ["price", 82.33], ["user_id", 21], ["created_at", "2024-04-21 08:43:04.887585"], ["updated_at", "2024-04-21 08:43:04.887585"]]
+  [1m[36mTRANSACTION (141.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Awesome Paper Chair"], ["description", "Adipisci fuga quis. Tempora natus modi. Et qui aut."], ["price", 12.56], ["user_id", 26], ["created_at", "2024-04-21 08:43:05.057666"], ["updated_at", "2024-04-21 08:43:05.057666"]]
+  [1m[36mTRANSACTION (141.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 30], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rustic Wooden Coat"], ["description", "Architecto commodi explicabo. Aut voluptatum corrupti. In odit quam."], ["price", 23.39], ["user_id", 30], ["created_at", "2024-04-21 08:43:05.231323"], ["updated_at", "2024-04-21 08:43:05.231323"]]
+  [1m[36mTRANSACTION (96.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 30], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Small Copper Coat"], ["description", "Ea provident praesentium. Labore ipsum autem. Fugit illo omnis."], ["price", 22.72], ["user_id", 30], ["created_at", "2024-04-21 08:43:05.354648"], ["updated_at", "2024-04-21 08:43:05.354648"]]
+  [1m[36mTRANSACTION (116.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Ergonomic Aluminum Watch"], ["description", "Repudiandae neque in. Iusto dolor voluptates. Libero necessitatibus laborum."], ["price", 26.76], ["user_id", 22], ["created_at", "2024-04-21 08:43:05.486895"], ["updated_at", "2024-04-21 08:43:05.486895"]]
+  [1m[36mTRANSACTION (180.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 30], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Practical Leather Shoes"], ["description", "Est unde ipsam. Quod odit in. Dolorum molestiae pariatur."], ["price", 59.63], ["user_id", 30], ["created_at", "2024-04-21 08:43:05.688629"], ["updated_at", "2024-04-21 08:43:05.688629"]]
+  [1m[36mTRANSACTION (200.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Awesome Plastic Clock"], ["description", "Quasi cupiditate placeat. Eos corporis velit. Sed sunt voluptates."], ["price", 71.09], ["user_id", 28], ["created_at", "2024-04-21 08:43:05.915786"], ["updated_at", "2024-04-21 08:43:05.915786"]]
+  [1m[36mTRANSACTION (148.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 30], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Incredible Linen Bench"], ["description", "Voluptates id quis. Eos sit illo. Cumque animi debitis."], ["price", 91.96], ["user_id", 30], ["created_at", "2024-04-21 08:43:06.088083"], ["updated_at", "2024-04-21 08:43:06.088083"]]
+  [1m[36mTRANSACTION (149.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Ergonomic Wooden Clock"], ["description", "Qui quibusdam cum. Repellat iure ipsam. Esse aut dolor."], ["price", 32.33], ["user_id", 25], ["created_at", "2024-04-21 08:43:06.262307"], ["updated_at", "2024-04-21 08:43:06.262307"]]
+  [1m[36mTRANSACTION (148.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Synergistic Cotton Bag"], ["description", "Molestiae nihil quia. Quia fugiat dolorem. Provident cumque fuga."], ["price", 56.35], ["user_id", 27], ["created_at", "2024-04-21 08:43:06.436030"], ["updated_at", "2024-04-21 08:43:06.436030"]]
+  [1m[36mTRANSACTION (148.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Practical Bronze Hat"], ["description", "Eius necessitatibus rerum. Est saepe velit. Rerum natus dignissimos."], ["price", 91.17], ["user_id", 27], ["created_at", "2024-04-21 08:43:06.610678"], ["updated_at", "2024-04-21 08:43:06.610678"]]
+  [1m[36mTRANSACTION (144.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.8ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Fantastic Concrete Bench"], ["description", "Rerum qui praesentium. Enim quo illum. Voluptatibus neque optio."], ["price", 93.87], ["user_id", 22], ["created_at", "2024-04-21 08:43:06.798283"], ["updated_at", "2024-04-21 08:43:06.798283"]]
+  [1m[36mTRANSACTION (135.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rustic Copper Keyboard"], ["description", "Debitis pariatur placeat. Rerum ratione accusantium. Est iusto accusamus."], ["price", 91.87], ["user_id", 26], ["created_at", "2024-04-21 08:43:06.956487"], ["updated_at", "2024-04-21 08:43:06.956487"]]
+  [1m[36mTRANSACTION (147.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Enormous Aluminum Keyboard"], ["description", "Tempora architecto velit. Quia aut ut. Tempora adipisci dolor."], ["price", 23.91], ["user_id", 26], ["created_at", "2024-04-21 08:43:07.129997"], ["updated_at", "2024-04-21 08:43:07.129997"]]
+  [1m[36mTRANSACTION (158.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mProduct Create (2.0ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Practical Steel Shirt"], ["description", "Magni maxime consequatur. Aspernatur maxime est. Repudiandae et voluptatem."], ["price", 87.87], ["user_id", 22], ["created_at", "2024-04-21 08:43:07.316910"], ["updated_at", "2024-04-21 08:43:07.316910"]]
+  [1m[36mTRANSACTION (332.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Synergistic Leather Gloves"], ["description", "Sint animi quos. Molestiae consequatur qui. Maiores perspiciatis quia."], ["price", 22.31], ["user_id", 24], ["created_at", "2024-04-21 08:43:07.675297"], ["updated_at", "2024-04-21 08:43:07.675297"]]
+  [1m[36mTRANSACTION (170.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Practical Aluminum Chair"], ["description", "Tempora ratione laboriosam. Nihil cum ea. Laboriosam quae rem."], ["price", 85.51], ["user_id", 28], ["created_at", "2024-04-21 08:43:07.872462"], ["updated_at", "2024-04-21 08:43:07.872462"]]
+  [1m[36mTRANSACTION (169.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 30], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Lightweight Bronze Bottle"], ["description", "Et hic ullam. Aliquam quis voluptas. Vitae rerum quod."], ["price", 96.89], ["user_id", 30], ["created_at", "2024-04-21 08:43:08.067781"], ["updated_at", "2024-04-21 08:43:08.067781"]]
+  [1m[36mTRANSACTION (160.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Small Rubber Keyboard"], ["description", "Molestiae nisi neque. Placeat soluta sit. Labore ea non."], ["price", 84.58], ["user_id", 22], ["created_at", "2024-04-21 08:43:08.256997"], ["updated_at", "2024-04-21 08:43:08.256997"]]
+  [1m[36mTRANSACTION (155.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Ergonomic Plastic Car"], ["description", "Autem officia id. Et provident voluptas. Voluptas culpa tempora."], ["price", 90.3], ["user_id", 22], ["created_at", "2024-04-21 08:43:08.441764"], ["updated_at", "2024-04-21 08:43:08.441764"]]
+  [1m[36mTRANSACTION (409.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rustic Copper Gloves"], ["description", "Temporibus eveniet et. Expedita dolores nam. Aut provident veniam."], ["price", 30.16], ["user_id", 27], ["created_at", "2024-04-21 08:43:08.867922"], ["updated_at", "2024-04-21 08:43:08.867922"]]
+  [1m[36mTRANSACTION (129.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Enormous Iron Car"], ["description", "Esse maiores omnis. Consequuntur atque fugiat. Nulla eius facere."], ["price", 21.51], ["user_id", 23], ["created_at", "2024-04-21 08:43:09.020333"], ["updated_at", "2024-04-21 08:43:09.020333"]]
+  [1m[36mTRANSACTION (409.1ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/products" for 127.0.0.1 at 2024-04-21 14:14:21 +0530
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 22)
+  Rendered products/index.html.erb within layouts/application (Duration: 3.4ms | Allocations: 885)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | Allocations: 2186)
+Completed 200 OK in 12ms (Views: 6.4ms | ActiveRecord: 1.0ms | Allocations: 3799)
+
+
+  [1m[36mUser Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mProduct Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Aerodynamic Paper Bottle"], ["description", "Quia excepturi et. Est rem in. Et quos aut."], ["price", 44.53], ["user_id", 1], ["created_at", "2024-04-21 08:48:25.683126"], ["updated_at", "2024-04-21 08:48:25.683126"]]
+  [1m[36mTRANSACTION (229.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Sleek Aluminum Chair"], ["description", "Alias vitae ut. Dolorum omnis totam. Temporibus tempora reiciendis."], ["price", 1.4], ["user_id", 1], ["created_at", "2024-04-21 08:48:25.922532"], ["updated_at", "2024-04-21 08:48:25.922532"]]
+  [1m[36mTRANSACTION (318.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Synergistic Iron Wallet"], ["description", "Voluptatem ratione explicabo. Quia quibusdam rem. Temporibus aperiam eligendi."], ["price", 38.34], ["user_id", 1], ["created_at", "2024-04-21 08:48:26.254384"], ["updated_at", "2024-04-21 08:48:26.254384"]]
+  [1m[36mTRANSACTION (738.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Ergonomic Silk Shoes"], ["description", "Sed quas ratione. Sunt qui quae. Ipsam rerum aut."], ["price", 99.53], ["user_id", 1], ["created_at", "2024-04-21 08:48:27.005092"], ["updated_at", "2024-04-21 08:48:27.005092"]]
+  [1m[36mTRANSACTION (296.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Awesome Rubber Shoes"], ["description", "Ex eum est. Necessitatibus delectus qui. Fugiat error voluptatem."], ["price", 4.59], ["user_id", 1], ["created_at", "2024-04-21 08:48:27.312847"], ["updated_at", "2024-04-21 08:48:27.312847"]]
+  [1m[36mTRANSACTION (273.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Durable Plastic Bottle"], ["description", "Soluta et ratione. Consequatur excepturi est. Alias soluta perferendis."], ["price", 14.18], ["user_id", 1], ["created_at", "2024-04-21 08:48:27.600992"], ["updated_at", "2024-04-21 08:48:27.600992"]]
+  [1m[36mTRANSACTION (360.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Incredible Marble Bottle"], ["description", "Deserunt doloribus natus. Sunt laborum corporis. Autem hic vel."], ["price", 64.26], ["user_id", 1], ["created_at", "2024-04-21 08:48:27.974220"], ["updated_at", "2024-04-21 08:48:27.974220"]]
+  [1m[36mTRANSACTION (156.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rustic Paper Knife"], ["description", "Culpa qui nostrum. Adipisci et consequuntur. Mollitia aut atque."], ["price", 39.34], ["user_id", 1], ["created_at", "2024-04-21 08:48:28.143324"], ["updated_at", "2024-04-21 08:48:28.143324"]]
+  [1m[36mTRANSACTION (203.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rustic Steel Hat"], ["description", "In et quas. Dolorem delectus nihil. Totam beatae dicta."], ["price", 77.12], ["user_id", 1], ["created_at", "2024-04-21 08:48:28.360121"], ["updated_at", "2024-04-21 08:48:28.360121"]]
+  [1m[36mTRANSACTION (126.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Incredible Leather Shirt"], ["description", "Debitis voluptatum reiciendis. Excepturi similique rerum. Facilis est provident."], ["price", 44.67], ["user_id", 1], ["created_at", "2024-04-21 08:48:28.500127"], ["updated_at", "2024-04-21 08:48:28.500127"]]
+  [1m[36mTRANSACTION (193.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Sleek Cotton Coat"], ["description", "Rerum doloremque at. Dignissimos et natus. Sequi tenetur voluptatem."], ["price", 94.38], ["user_id", 1], ["created_at", "2024-04-21 08:48:28.708362"], ["updated_at", "2024-04-21 08:48:28.708362"]]
+  [1m[36mTRANSACTION (284.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Lightweight Copper Plate"], ["description", "Et omnis molestiae. Est temporibus magnam. Minima aut ut."], ["price", 6.51], ["user_id", 1], ["created_at", "2024-04-21 08:48:29.008702"], ["updated_at", "2024-04-21 08:48:29.008702"]]
+  [1m[36mTRANSACTION (144.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Ergonomic Leather Keyboard"], ["description", "Excepturi nobis et. Ratione cupiditate quisquam. Iusto quod dolorum."], ["price", 38.58], ["user_id", 1], ["created_at", "2024-04-21 08:48:29.167490"], ["updated_at", "2024-04-21 08:48:29.167490"]]
+  [1m[36mTRANSACTION (350.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Aerodynamic Paper Watch"], ["description", "Deleniti itaque omnis. Sed perspiciatis vel. At quasi corporis."], ["price", 3.76], ["user_id", 1], ["created_at", "2024-04-21 08:48:29.529414"], ["updated_at", "2024-04-21 08:48:29.529414"]]
+  [1m[36mTRANSACTION (307.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.9ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Incredible Concrete Computer"], ["description", "Magnam quis expedita. Voluptas voluptas praesentium. Adipisci consequatur ut."], ["price", 11.68], ["user_id", 1], ["created_at", "2024-04-21 08:48:29.847887"], ["updated_at", "2024-04-21 08:48:29.847887"]]
+  [1m[36mTRANSACTION (378.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Small Steel Knife"], ["description", "Est temporibus quae. Fugiat repellat dolores. Ut quidem quis."], ["price", 17.86], ["user_id", 1], ["created_at", "2024-04-21 08:48:30.242933"], ["updated_at", "2024-04-21 08:48:30.242933"]]
+  [1m[36mTRANSACTION (364.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Heavy Duty Granite Chair"], ["description", "Voluptas natus expedita. Suscipit rem quis. Enim minima et."], ["price", 54.27], ["user_id", 1], ["created_at", "2024-04-21 08:48:30.618998"], ["updated_at", "2024-04-21 08:48:30.618998"]]
+  [1m[36mTRANSACTION (356.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Practical Granite Chair"], ["description", "Eum dignissimos ut. Officia dicta et. Sed tempore occaecati."], ["price", 44.6], ["user_id", 1], ["created_at", "2024-04-21 08:48:30.986318"], ["updated_at", "2024-04-21 08:48:30.986318"]]
+  [1m[36mTRANSACTION (448.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Heavy Duty Granite Wallet"], ["description", "Quae laudantium autem. Fugit voluptatem nisi. Praesentium necessitatibus voluptatem."], ["price", 15.22], ["user_id", 1], ["created_at", "2024-04-21 08:48:31.445212"], ["updated_at", "2024-04-21 08:48:31.445212"]]
+  [1m[36mTRANSACTION (217.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Create (1.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rustic Wool Pants"], ["description", "At voluptatem vero. Doloremque qui reiciendis. Harum totam accusamus."], ["price", 60.77], ["user_id", 1], ["created_at", "2024-04-21 08:48:31.673606"], ["updated_at", "2024-04-21 08:48:31.673606"]]
+  [1m[36mTRANSACTION (366.3ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/products" for 127.0.0.1 at 2024-04-21 14:18:39 +0530
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 22)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.0ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.0ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.0ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/index.html.erb within layouts/application (Duration: 3.5ms | Allocations: 1961)
+  Rendered layout layouts/application.html.erb (Duration: 4.7ms | Allocations: 3263)
+Completed 200 OK in 8ms (Views: 4.9ms | ActiveRecord: 0.4ms | Allocations: 4898)
+
+
+Started GET "/products" for 127.0.0.1 at 2024-04-21 14:23:03 +0530
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/products/index.html.erb:8
+  Rendered products/_product.html.erb (Duration: 0.8ms | Allocations: 268)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 22)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/index.html.erb within layouts/application (Duration: 7.5ms | Allocations: 2704)
+  Rendered layout layouts/application.html.erb (Duration: 10.3ms | Allocations: 4241)
+Completed 200 OK in 17ms (Views: 11.3ms | ActiveRecord: 0.6ms | Allocations: 6793)
+
+
+Started GET "/products" for 127.0.0.1 at 2024-04-21 14:23:13 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/products/index.html.erb:8
+  Rendered products/_product.html.erb (Duration: 0.7ms | Allocations: 293)
+  Rendered products/_product.html.erb (Duration: 0.3ms | Allocations: 22)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.3ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 23)
+  Rendered products/index.html.erb within layouts/application (Duration: 67.6ms | Allocations: 18574)
+  Rendered layout layouts/application.html.erb (Duration: 116.1ms | Allocations: 50361)
+Completed 200 OK in 441ms (Views: 120.9ms | ActiveRecord: 5.4ms | Allocations: 691630)
+
+
+Started GET "/products" for 127.0.0.1 at 2024-04-21 14:23:15 +0530
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/products/index.html.erb:8
+  Rendered products/_product.html.erb (Duration: 0.3ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 22)
+  Rendered products/_product.html.erb (Duration: 0.3ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.3ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.3ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 23)
+  Rendered products/index.html.erb within layouts/application (Duration: 13.1ms | Allocations: 2016)
+  Rendered layout layouts/application.html.erb (Duration: 16.2ms | Allocations: 3318)
+Completed 200 OK in 23ms (Views: 16.4ms | ActiveRecord: 1.0ms | Allocations: 4961)
+
+
+Started GET "/products" for 127.0.0.1 at 2024-04-21 14:23:18 +0530
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/products/index.html.erb:8
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 22)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/index.html.erb within layouts/application (Duration: 8.3ms | Allocations: 2006)
+  Rendered layout layouts/application.html.erb (Duration: 10.6ms | Allocations: 3308)
+Completed 200 OK in 18ms (Views: 10.8ms | ActiveRecord: 1.5ms | Allocations: 4954)
+
+
+Started GET "/products" for 127.0.0.1 at 2024-04-21 14:23:19 +0530
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/products/index.html.erb:8
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 22)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/index.html.erb within layouts/application (Duration: 7.1ms | Allocations: 2006)
+  Rendered layout layouts/application.html.erb (Duration: 10.4ms | Allocations: 3308)
+Completed 200 OK in 18ms (Views: 10.8ms | ActiveRecord: 1.1ms | Allocations: 4936)
+
+
+Started GET "/products" for 127.0.0.1 at 2024-04-21 14:24:40 +0530
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/products/index.html.erb:12:in `each_with_index'
+  Rendered products/_product.html.erb (Duration: 0.9ms | Allocations: 268)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 22)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/index.html.erb within layouts/application (Duration: 8.5ms | Allocations: 2742)
+  Rendered layout layouts/application.html.erb (Duration: 11.5ms | Allocations: 4280)
+Completed 200 OK in 18ms (Views: 12.7ms | ActiveRecord: 0.9ms | Allocations: 6847)
+
+
+Started GET "/users/sign_out" for 127.0.0.1 at 2024-04-21 14:24:55 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/users/sign_out"):
+  
+Started GET "/users/sign_out" for 127.0.0.1 at 2024-04-21 14:30:32 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Users::SessionsController#destroy as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/users/sign_in
+Completed 303 See Other in 586ms (ActiveRecord: 5.8ms | Allocations: 631705)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2024-04-21 14:30:33 +0530
+Processing by Users::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 2.1ms | Allocations: 916)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 12.6ms | Allocations: 4577)
+  Rendered layout layouts/application.html.erb (Duration: 79.2ms | Allocations: 36021)
+Completed 200 OK in 97ms (Views: 92.8ms | ActiveRecord: 0.0ms | Allocations: 39803)
+
+
+Started GET "/" for 127.0.0.1 at 2024-04-21 14:30:41 +0530
+Processing by ProductsController#home as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 362)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2024-04-21 14:30:41 +0530
+Processing by Users::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.4ms | Allocations: 135)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1253)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | Allocations: 2555)
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.0ms | Allocations: 3231)
+
+
+Started GET "/" for 127.0.0.1 at 2024-04-21 14:30:41 +0530
+Processing by ProductsController#home as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 294)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2024-04-21 14:30:41 +0530
+Processing by Users::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.4ms | Allocations: 135)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 2.6ms | Allocations: 1246)
+  Rendered layout layouts/application.html.erb (Duration: 5.5ms | Allocations: 2547)
+Completed 200 OK in 7ms (Views: 6.3ms | ActiveRecord: 0.0ms | Allocations: 3219)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2024-04-21 14:30:50 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 1.0ms | Allocations: 256)
+  Rendered devise/shared/_links.html.erb (Duration: 0.7ms | Allocations: 235)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 6.6ms | Allocations: 2276)
+  Rendered layout layouts/application.html.erb (Duration: 9.0ms | Allocations: 3591)
+Completed 200 OK in 15ms (Views: 12.2ms | ActiveRecord: 0.0ms | Allocations: 4743)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2024-04-21 14:30:53 +0530
+Processing by Users::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 135)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1256)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | Allocations: 2563)
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.0ms | Allocations: 3235)
+
+
+Started GET "/users/password/new" for 127.0.0.1 at 2024-04-21 14:30:53 +0530
+Processing by Devise::PasswordsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/passwords/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 14)
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 139)
+  Rendered devise/passwords/new.html.erb within layouts/application (Duration: 2.3ms | Allocations: 1228)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | Allocations: 2542)
+Completed 200 OK in 6ms (Views: 4.8ms | ActiveRecord: 0.0ms | Allocations: 3639)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2024-04-21 14:30:55 +0530
+Processing by Users::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"marcos@hoeger.test", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "marcos@hoeger.test"], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Completed 303 See Other in 227ms (ActiveRecord: 0.3ms | Allocations: 4431)
+
+
+Started GET "/" for 127.0.0.1 at 2024-04-21 14:30:55 +0530
+Processing by ProductsController#home as TURBO_STREAM
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/products
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms | Allocations: 1320)
+
+
+Started GET "/products" for 127.0.0.1 at 2024-04-21 14:30:55 +0530
+Processing by ProductsController#index as TURBO_STREAM
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/products/index.html.erb:12:in `each_with_index'
+  Rendered products/_product.html.erb (Duration: 0.7ms | Allocations: 285)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 22)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/index.html.erb within layouts/application (Duration: 23.6ms | Allocations: 18443)
+  Rendered layout layouts/application.html.erb (Duration: 25.9ms | Allocations: 19757)
+Completed 200 OK in 45ms (Views: 24.9ms | ActiveRecord: 4.4ms | Allocations: 27923)
+
+
+Started GET "/products" for 127.0.0.1 at 2024-04-21 15:44:52 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/products/index.html.erb:12:in `each_with_index'
+  Rendered products/_product.html.erb (Duration: 0.7ms | Allocations: 292)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 22)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.0ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/index.html.erb within layouts/application (Duration: 20.6ms | Allocations: 18623)
+  Rendered layout layouts/application.html.erb (Duration: 51.9ms | Allocations: 52058)
+Completed 200 OK in 359ms (Views: 55.0ms | ActiveRecord: 6.1ms | Allocations: 693737)
+
+
+Started GET "/products/130" for 127.0.0.1 at 2024-04-21 15:45:20 +0530
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"130"}
+  [1m[36mProduct Load (1.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 130], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:73:in `set_product'
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/show.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_product.html.erb:19
+  Rendered products/_product.html.erb (Duration: 5.2ms | Allocations: 1511)
+  Rendered products/show.html.erb within layouts/application (Duration: 8.3ms | Allocations: 2103)
+  Rendered layout layouts/application.html.erb (Duration: 11.2ms | Allocations: 3410)
+Completed 200 OK in 36ms (Views: 12.1ms | ActiveRecord: 3.6ms | Allocations: 5979)
+
+
+Started GET "/products/130" for 127.0.0.1 at 2024-04-21 15:45:21 +0530
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"130"}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 130], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:73:in `set_product'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/show.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_product.html.erb:19
+  Rendered products/_product.html.erb (Duration: 1.0ms | Allocations: 683)
+  Rendered products/show.html.erb within layouts/application (Duration: 1.5ms | Allocations: 1043)
+  Rendered layout layouts/application.html.erb (Duration: 2.7ms | Allocations: 2344)
+Completed 200 OK in 6ms (Views: 2.9ms | ActiveRecord: 0.6ms | Allocations: 4258)
+
+
+Started GET "/products" for 127.0.0.1 at 2024-04-21 15:53:53 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/products/index.html.erb:12:in `each_with_index'
+  Rendered products/_product.html.erb (Duration: 0.7ms | Allocations: 287)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 22)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  [1m[36mProduct Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" WHERE "products"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/products/index.html.erb:28
+  Rendered products/index.html.erb within layouts/application (Duration: 28.0ms | Allocations: 20511)
+  Rendered layout layouts/application.html.erb (Duration: 126.8ms | Allocations: 58201)
+Completed 200 OK in 455ms (Views: 128.1ms | ActiveRecord: 9.3ms | Allocations: 699423)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/assets/will_paginate"):
+  
+Started GET "/products?page=2" for 127.0.0.1 at 2024-04-21 15:53:57 +0530
+Processing by ProductsController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 10]]
+  ↳ app/views/products/index.html.erb:12:in `each_with_index'
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 25)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  [1m[36mProduct Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" WHERE "products"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/products/index.html.erb:28
+  Rendered products/index.html.erb within layouts/application (Duration: 10.2ms | Allocations: 3220)
+  Rendered layout layouts/application.html.erb (Duration: 12.2ms | Allocations: 4522)
+Completed 200 OK in 22ms (Views: 11.9ms | ActiveRecord: 2.0ms | Allocations: 6167)
+
+
+Started GET "/products?page=2" for 127.0.0.1 at 2024-04-21 15:53:58 +0530
+Processing by ProductsController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 10]]
+  ↳ app/views/products/index.html.erb:12:in `each_with_index'
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 25)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 23)
+  [1m[36mProduct Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" WHERE "products"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/products/index.html.erb:28
+  Rendered products/index.html.erb within layouts/application (Duration: 13.7ms | Allocations: 3207)
+  Rendered layout layouts/application.html.erb (Duration: 16.4ms | Allocations: 4509)
+Completed 200 OK in 28ms (Views: 16.2ms | ActiveRecord: 2.5ms | Allocations: 6146)
+
+
+Started GET "/products?page=2" for 127.0.0.1 at 2024-04-21 15:53:58 +0530
+Processing by ProductsController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 10]]
+  ↳ app/views/products/index.html.erb:12:in `each_with_index'
+  Rendered products/_product.html.erb (Duration: 0.4ms | Allocations: 25)
+  Rendered products/_product.html.erb (Duration: 0.3ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.3ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.3ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.4ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.3ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 23)
+  [1m[36mProduct Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" WHERE "products"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/products/index.html.erb:28
+  Rendered products/index.html.erb within layouts/application (Duration: 22.8ms | Allocations: 3207)
+  Rendered layout layouts/application.html.erb (Duration: 25.5ms | Allocations: 4509)
+Completed 200 OK in 38ms (Views: 24.8ms | ActiveRecord: 2.8ms | Allocations: 6144)
+
+
+Started GET "/products/133" for 127.0.0.1 at 2024-04-21 15:53:59 +0530
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"133"}
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 133], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:73:in `set_product'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/show.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_product.html.erb:19
+  Rendered products/_product.html.erb (Duration: 5.7ms | Allocations: 1508)
+  Rendered products/show.html.erb within layouts/application (Duration: 8.9ms | Allocations: 2099)
+  Rendered layout layouts/application.html.erb (Duration: 14.3ms | Allocations: 3405)
+Completed 200 OK in 26ms (Views: 14.7ms | ActiveRecord: 1.9ms | Allocations: 5952)
+
+
+Started GET "/products?page=3" for 127.0.0.1 at 2024-04-21 15:54:03 +0530
+Processing by ProductsController#index as HTML
+  Parameters: {"page"=>"3"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 20]]
+  ↳ app/views/products/index.html.erb:12:in `each_with_index'
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 26)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 23)
+  Rendered products/index.html.erb within layouts/application (Duration: 7.1ms | Allocations: 1491)
+  Rendered layout layouts/application.html.erb (Duration: 9.9ms | Allocations: 2793)
+Completed 200 OK in 21ms (Views: 10.3ms | ActiveRecord: 1.5ms | Allocations: 4437)
+
+
+Started GET "/products/new" for 127.0.0.1 at 2024-04-21 15:54:05 +0530
+Processing by ProductsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/new.html.erb within layouts/application
+  Rendered products/_form.html.erb (Duration: 3.5ms | Allocations: 2214)
+  Rendered products/new.html.erb within layouts/application (Duration: 4.3ms | Allocations: 2514)
+  Rendered layout layouts/application.html.erb (Duration: 5.8ms | Allocations: 3828)
+Completed 200 OK in 9ms (Views: 6.3ms | ActiveRecord: 0.2ms | Allocations: 5329)
+
+
+Started GET "/products?page=2" for 127.0.0.1 at 2024-04-21 15:54:05 +0530
+Processing by ProductsController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 10]]
+  ↳ app/views/products/index.html.erb:12:in `each_with_index'
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 25)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 24)
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 23)
+  [1m[36mProduct Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" WHERE "products"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/products/index.html.erb:28
+  Rendered products/index.html.erb within layouts/application (Duration: 31.1ms | Allocations: 3213)
+  Rendered layout layouts/application.html.erb (Duration: 34.0ms | Allocations: 4520)
+Completed 200 OK in 38ms (Views: 33.8ms | ActiveRecord: 1.3ms | Allocations: 6150)
+
+
+  [1m[36mUser Load (670.8ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mProduct Load (525.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProduct Create (353.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "default name"], ["description", "hello"], ["price", 12.0], ["user_id", 1], ["created_at", "2024-04-22 05:51:44.520372"], ["updated_at", "2024-04-22 05:51:44.520372"]]
+  [1m[36mTRANSACTION (104.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mProduct Count (208.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" WHERE "products"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mProduct Load (1.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 ORDER BY "products"."id" DESC LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Load (1.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 ORDER BY "products"."id" DESC LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Load (1.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 ORDER BY "products"."id" DESC LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Load (1.3ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 ORDER BY "products"."id" DESC LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mProduct Load (1.3ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 AND "products"."id" = $2 LIMIT $3[0m  [["user_id", 1], ["id", 169], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProduct Update All (2.7ms)[0m  [1m[33mUPDATE "products" SET "user_id" = $1 WHERE "products"."user_id" = $2 AND "products"."id" = $3[0m  [["user_id", nil], ["user_id", 1], ["id", 169]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mProduct Load (1.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."user_id" = $1 AND "products"."id" = $2 LIMIT $3[0m  [["user_id", 1], ["id", 169], ["LIMIT", 1]]
